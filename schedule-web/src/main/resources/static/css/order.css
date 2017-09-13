@@ -1,0 +1,174 @@
+.form-group select{
+    width: 190px;
+}
+.form-group input{
+    width: 190px;
+}
+.form-group .separate-span{
+    padding-left: 43px;
+}
+
+.table .separation-row{
+    border: none;
+    height: 10px;
+}
+.remark-row{
+    height: 25px;
+    line-height: 25px;
+    background: #fffaeb;
+    color: #f90;
+}
+.table tbody tr td.img-cell .thumbnail{
+    width: 60px;
+    height: 60px;
+    max-width: 60px;
+    max-height: 60px;
+}
+.search_form{
+    margin: 20px;
+}
+.hidden-tr{
+    display: none;
+}
+.table tbody tr td.img-cell{
+    width: 70px;
+    height: 60px;
+    text-align: left;
+    padding-right: 0;
+    border:none;
+}
+.table tbody tr td.title-cell{
+    padding: 10px;
+    vertical-align: top;
+    text-align: left;
+    border: none;
+}
+.table tbody tr td.price-cell{
+    text-align: left;
+    vertical-align: top;
+    border:none;
+    width:50px;
+}
+.table tbody tr td.num-cell{
+    text-align: left;
+    vertical-align: top;
+    border: none;
+    width: 50px;
+}
+.table tbody tr td.edit-cell{
+    width:80px;
+}
+.table tbody tr td.other-cell{
+    text-align: left;
+    border: none;
+}
+.order-detail .info-region{
+    width: 320px;
+    padding: 15px 15px 10px 15px;
+    border-right: 1px solid #e5e5e5;
+    float: left;
+}
+.order-detail .state-region{
+    padding: 20px 20px 10px 20px;
+    margin-left: -1px;
+    border-left: 1px solid #e5e5e5;
+    float: left;
+    width:300px
+}
+.order-detail .info-table{
+    margin-top: 10px;
+    width:300px;
+}
+.order-detail .info-table tr th{
+    padding: 0 0 10px 0;
+    vertical-align: top;
+    text-align: left;
+    color: #999;
+    border: none;
+}
+.order-detail .info-region .info-table tr td{
+    padding: 0 0 10px 0;
+    vertical-align: top;
+    color: #999;
+    text-align: right;
+    border: none;
+}
+.order-detail .state-region .info-table tr td{
+    padding: 0 0 10px 0;
+    vertical-align: top;
+    color: #999;
+    text-align: center;
+    border: none;
+}
+.order-detail .dashed-line{
+    border-top: 1px dashed #e5e5e5;
+}
+.order-detail thead th {
+    text-align: left;
+}
+.order-detail .goods-table tr td{
+    text-align: left;
+    border: 1px solid #ddd;;
+}
+.note_dialog .js-remark{
+    width: 100%;
+}
+.state-region-table tr td{
+    border: none;
+}
+.order-detail .return-table tr td{
+    border-top: none;
+    border-bottom: 1px solid #f3f3f3;
+    padding: 4px;
+}
+
+
+.goods-detail-table tbody tr td.img-cell{
+    width: 70px;
+    height: 60px;
+    text-align: left;
+    padding-right: 0;
+    border-bottom: 1px solid #f3f3f3;
+}
+.goods-detail-table tbody tr td.title-cell{
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+    width: 600px;
+    border-bottom: 1px solid #f3f3f3;
+}
+.goods-detail-table tbody tr td.price-cell{
+    text-align: left;
+    vertical-align: top;
+    border:1px solid #f3f3f3;
+}
+.goods-detail-table tbody tr td.num-cell{
+    text-align: left;
+    vertical-align: top;
+    border:1px solid #f3f3f3;
+}
+.goods-detail-table tbody tr td.order-description{
+    text-align: right;
+}
+
+.goods-table tbody tr td input{
+    width:50px;
+}
+.custom-checkbox{
+    text-align: left;
+    min-width: 50px;
+}
+.custom-radio{
+    text-align: center;
+}
+.delivery-table tbody tr td {
+    border: none;
+    text-align: left;
+}
+.payment_dialog table thead tr th{
+    min-width: 70px;
+}
+
+.payment_dialog table thead tr th .date_th{
+    min-width: 150px;
+}

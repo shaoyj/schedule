@@ -1,0 +1,142 @@
+<#import "/base/base.html" as base/>
+<@base.css>
+<!-- 引入css _beg -->
+<link rel="stylesheet" type="text/css" href="${rc.contextPath}/css/validationEngine.jquery.css"/>
+<!-- 引入css _end-->
+</@base.css>
+<@base.script>
+
+</@base.script>
+<@base.html "添加Job">
+<br id="content">
+</br>
+<div>
+    <form  id="formCreate"   >
+
+        <input type="hidden" id="pageHid" name="page" value="${page}"/>
+
+        <p>
+            <label>JOB名称：</label>
+                <span class="form-group">
+                    <input type="text" name="beanName" size="40" class="form-control validate[required]" maxlength="50" />
+                </span>
+        </p>
+
+        <p>
+            <label>运行状态：</label>
+                <span class="radio">
+                <label  class="radio">
+                    <input type="radio" name="status"  value="RUN"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;运行
+                </label>
+                <label  class="radio">
+                    <input type="radio" name="status" checked="checked"  value="STOP" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;停止
+                </label>
+            </span>
+        </p>
+
+        <p>
+            <label>表达式：</label>
+                <span class="form-group">
+                    <input type="text" name="cronExpression" size="40" class="form-control validate[required]" maxlength="50" />
+                </span>
+        </p>
+
+        <p>
+            <label>最大处理数：</label>
+                <span class="form-group">
+                    <input type="text" name="maxLimit" size="40" class="form-control " maxlength="50" />
+                </span>
+        </p>
+
+        <p>
+            <label>配置内容：</label>
+                <span class="form-group">
+                    <input type="text" name="config" size="40" class="form-control" maxlength="50" />
+                </span>
+        </p>
+
+        <p>
+            <label>线程数：</label>
+                <span class="form-group">
+                    <input type="text" name="threads" size="40" class="form-control" maxlength="50"/>
+                </span>
+        </p>
+
+        <p>
+            <label>是否允许并行：</label>
+               <span class="radio">
+                <label  class="radio">
+                    <input type="radio"  name="concurrency" value="true" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;允许
+                </label>
+                <label  class="radio">
+                    <input type="radio" checked="checked" name="concurrency" value="false"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;禁止
+                </label>
+            </span>
+        </p>
+
+        <p>
+            <label>只允许执行主机：</label>
+                <span class="form-group">
+                    <input type="text" name="allowHosts" size="40" class="form-control" maxlength="50" />
+                </span>
+        </p>
+
+        <p>
+            <label>只禁止执行主机：</label>
+                <span class="form-group">
+                    <input type="text" name="denyHosts" size="40" class="form-control" maxlength="50" />
+                </span>
+        </p>
+
+        <p>
+            <label>备注：</label>
+            <span class="form-group">
+                <input type="text" name="memo" size="40" class="form-control " maxlength="50" />
+            </span>
+        </p>
+
+
+        <div class="btnBox">
+            <input class="btn btn-primary" type="button" value="保存" onclick="saveData()">
+        </div>
+    </form>
+</div>
+
+
+
+<script type="text/javascript">
+    function saveData()
+    {
+        //校验
+        var flag=jQuery("#formCreate").validationEngine('validate');
+        if(flag==false)
+        {
+            return;
+        }
+
+        //保存
+        var url = "${rc.contextPath}/taskManager/add";
+        var param = $("#formCreate").serialize();
+        $.ajax({
+            type: "post",
+            url: url,
+            data: param,
+            async: false,
+            error: function (data) {
+                if (data.message != undefined)
+                    console.log(data.message);
+            }
+
+        }).done(function (data) {
+            if (data.code == 0) {
+                alert("保存成功");
+                window.location = "${rc.contextPath}/taskManager/index.html";
+            } else {
+                alert(data.message);
+            }
+        });
+
+    }
+
+</script>
+</@base.html>

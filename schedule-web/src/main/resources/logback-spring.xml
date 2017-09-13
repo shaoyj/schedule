@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+  <property name="LOG_FILE" value="/tmp/logs/schedule/web.log}"/>
+  <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+  <jmxConfigurator/>
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_FILE}</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <FileNamePattern>/tmp/logs/schedule/web.%d{yyyy-MM-dd}.log</FileNamePattern>
+      <maxHistory>30</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</Pattern>
+    </encoder>
+  </appender>
+  <springProfile name="dev">
+    <root level="INFO">
+      <appender-ref ref="CONSOLE" />
+    </root>
+  </springProfile>
+  <springProfile name="prod">
+    <root level="INFO">
+      <appender-ref ref="CONSOLE" />
+    </root>
+  </springProfile>
+  <springProfile name="test">
+    <root level="INFO">
+      <appender-ref ref="CONSOLE" />
+    </root>
+  </springProfile>
+  <springProfile name="uat">
+    <root level="INFO">
+      <appender-ref ref="CONSOLE" />
+      <appender-ref ref="FILE" />
+    </root>
+  </springProfile>
+</configuration>

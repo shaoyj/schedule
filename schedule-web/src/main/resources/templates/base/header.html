@@ -1,0 +1,14 @@
+<div class="clearfix topbar">
+    <h3 class="pull-left">配置中心-后台管理系统</h3>
+    <div class="pull-right">欢迎&nbsp;
+        <#if Session.zoomy_user ??>
+            ${Session.zoomy_user.name}
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#" rel="${rc.contextPath}/perm/user/get.html?userId= ${Session.zoomy_user.id}" class="nodeThree">修改密码</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+
+        </#if>
+        <a href="${rc.contextPath}/login/loginOut.html">安全退出</a>
+    </div>
+</div>
+

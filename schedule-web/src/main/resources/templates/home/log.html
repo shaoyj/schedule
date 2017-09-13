@@ -1,0 +1,21 @@
+<#import "/base/base.html" as base/>
+<@base.html "日志">
+<table class="table table-bordered table-hover">
+    <tr  class="success">
+        <th>标题</th>
+        <th>内容</th>
+        <th>操作人</th>
+        <th>时间</th>
+    </tr>
+    <#list pageView.result as log>
+        <tr>
+            <td>${log.logName}</td>
+            <td>${log.content}</td>
+            <td>${log.operatorName}</td>
+            <td>${log.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+        </tr>
+    </#list>
+</table>
+<#import "/base/pagination.html" as pagniation/>
+<@pagniation.page pageInfo=pageView ajax="#show_log_dlg"/>
+</@base.html>

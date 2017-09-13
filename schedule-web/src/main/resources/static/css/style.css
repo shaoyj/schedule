@@ -1,0 +1,71 @@
+body,html{background:#fefdfd;}
+.index-body,.index-html,.wrapper,.wrapper-main{height:100%;overflow: hidden;}
+ul{list-style:none;padding:0;}
+a{outline:none;blr:expression(this.onFocus=this.blur());text-decoration:none;cursor: pointer;}
+a:hover,a:focus{outline:none;text-decoration:none;cursor: pointer;}
+.fl{display:inline-block;float:left;}
+.fr{display:inline-block;float:right;}
+.clearfix:after{ display: block; clear: both; content:"";visibility:hidden;height:0}/*IE8及以上*/
+.clearfix{ zoom:1}
+/*滚动条*/
+::-webkit-scrollbar {width:5px;height:5px;background-color: #F5F5F5;}
+::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 5px rgba(0,0,0,0.3);border-radius: 10px;background-color: #F5F5F5; }
+::-webkit-scrollbar-thumb{border-radius: 10px;-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);background-color: #555;}
+/*顶部导航*/
+.topbar{background:#444;color:#fff;padding:0 2% 10px;}
+.topbar .pull-right{margin-top:22px;}
+.topbar a{color:#fff;}
+/*左导航*/
+#leftbarDrag_r{width:15px;height:100%;position:absolute;right:0;top:0;cursor:e-resize;z-index:1;}
+#leftbarDragCorner{width:15px;height:15px;position:absolute;right:0px;bottom:0px;z-index:3;}
+.leftbar{position:absolute;left:0;top:66px;height:100%;padding-bottom:66px;}
+.rightMain{margin-left:170px;height:100%;overflow:hidden;position:relative;padding-bottom:111px;}
+.rightMain .slogan{position:absolute;top:0px;left:0}
+.leftbar a{color:#fff;padding:10px 50px 10px 10px;}
+.leftbar-group{background:#4d5e70;padding:0px 0px 20px;height:100%;overflow:auto;}
+.leftbar-group a{display:block;position:relative;min-width:200px;font-size: 14px;}
+.leftbar .nodeOne{background:#333;margin-bottom:1px;}
+.leftbar .nodeTwo{padding-left:20px;}
+.leftbar .nodeThree{padding-left:50px;}
+.leftbar .glyphicon{position:absolute;right:10px;top:13px;}
+.leftbar .nodeThree:hover,.leftbar .cur{background:#5f5351}
+.leftbar .nodeTwo{border-bottom:1px solid #5f5351}
+.leftbar .nodeTwo .glyphicon{position:absolute;right:20px;top:13px;}
+#iframeContainer{height:100%;padding-left:10px;}
+#iframeContainer iframe{height:100%;width:100%;}
+.rightTabBoxW{height:42px;width:100%;overflow:auto;}
+.rightTabBox{margin:0px;border-bottom:1px solid #e5e5e5;}
+.rightTabBox li{padding:10px 30px 10px 10px;cursor:pointer;position:relative;border-right:1px solid #e5e5e5;}
+.rightTabBox .cur{background:#66798C;color:#fff;}
+.rightTabBox .closeWin{position:absolute;top:10px;right:7px;}
+.rightTabBox .cur .closeWin{color:#fff;}
+
+.form-btn-box{text-align:left;padding-left:100px;}
+.form-btn-box .btn-xs{margin:0 5px;}
+
+#noticeModel,#popModel,#tipsModel,#popupModel,#frameModel{position:fixed;top:0;left:0;background:rgba(0,0,0,0.5);height:100%;width:100%;z-index:1000;text-align: center;}
+#noticeModel .modal-content{margin:10% auto 0;min-width:400px;padding:3%;text-align:left; display:inline-block;}
+#popModel .modal-content,#tipsModel .modal-content,#popupModel .modal-content{margin:10% auto 0;min-width:400px;padding:1% 1.5%;text-align:left; display:inline-block;}
+.popModel-text,.tipsModel-text{margin-top:30px;}
+#popModel .btnBox,#tipsModel .btnBox,#popupModel .btnBox{text-align:center;}
+#popModel .btn,#tipsModel .btn,#popupModel .btn{margin:10px 5px;}
+#popupModel .popupModel-con{padding-top:10px;}
+.popupModel-title{border-bottom:1px solid #ebebeb;padding-bottom:10px;text-align:center}
+#popupCon{display:none;}
+#frameModel object{width:100%;height:100%;margin:0 auto;display:block;}
+#frameModel .modal-content{min-width:700px;height:60%;margin:60px auto;text-align:left; display:inline-block;}
+#frameModel .close{position:absolute;top:10px;right:10px;}
+/*地址选择器*/
+#areachoosePop{display:none;}
+.areaCheck{width:570px;}
+.areaCheck .depth1{margin:4px 0;position:relative;width:190px;}
+.areaCheck input{margin-right:3px;}
+.areaCheck .irrow{display:inline-block;border-width:8px;border-color:#B3AAAA transparent transparent transparent;border-style: solid;position:relative;top:10px;margin-left:6px;cursor:pointer;}
+.areaCheck .depth2{position:absolute;left:0;top: 30px;width:220px;background:#EFEAEA;z-index: 99;}
+.areaCheck .depth2Close{padding:5px;text-align: right;cursor: pointer;}
+.areaCheck label{min-width:auto;margin:5px 0 0 10px;width:100px;text-align: left;}
+#areaShow td{padding:5px 10px;}
+.cityCheckedLength{color:red;}
+
+.maskpop{position:fixed;top:0;left:0;height:100%;width:100%;z-index:999;background:rgba(0,0,0,0.4);display: none;}
+.maskpopText{text-align:center;color:#fff;margin-top:30%;}

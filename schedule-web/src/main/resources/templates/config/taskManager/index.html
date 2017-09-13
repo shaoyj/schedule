@@ -1,0 +1,36 @@
+<#import "/base/base.html" as base/>
+<@base.html "">
+<@base.script>
+<script src="${rc.contextPath}/js/log.js"></script>
+</@base.script>
+<div class="container-fluid">
+    <p/>
+    <form id="search_form" name="search_form" method="post">
+        <span class="form-group">
+            <label for="beanName" class="control-label">JOB名称：</label>
+            <input class="form-control" id="beanName" type="text" name="beanName"/>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" class="btn btn-primary" value="  查询  " onclick="search()"/>
+            <button class="btn btn-primary" type="button" onclick="reset()">重置</button>
+            <button class="btn btn-primary" type="button"  onclick="location.href='${rc.contextPath}/taskManager/toAdd.html'">添加JOB</button>
+        </span>
+    </form>
+
+    <div id="search_content">
+        <#include  "config/taskManager/search.html" />
+    </div>
+
+
+</div>
+
+<script>
+    function search() {
+        var url = "${rc.contextPath}/taskManager/search?";
+        var params = $("#search_form").serialize();
+        $.get(url, params , function (data) {
+            $("#search_content").html(data);
+        });
+    }
+
+</script>
+</@base.html>

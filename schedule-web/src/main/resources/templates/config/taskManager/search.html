@@ -1,0 +1,148 @@
+<#import "/base/base.html" as base/>
+
+<table class="table table-bordered table-hover">
+    <tr class="success">
+        <th>JOB名称</th>
+        <th>状态</th>
+        <th>cronExpression</th>
+
+        <th>下次执行时间</th>
+        <th>配置内容</th>
+
+        <th>并行</th>
+        <th>只允许ip</th>
+        <th>只禁止ip</th>
+
+        <th>操作</th>
+    </tr>
+    <#if pageView.result??>
+        <#list pageView.result as taskInfo>
+            <tr>
+                <td>${taskInfo.beanName?default("")}</td>
+                <td>${taskInfo.status?default("")}</td>
+                <td>${taskInfo.cronExpression?default("")}</td>
+
+                <td>${taskInfo.nextExecutorTime?default("")}</td>
+                <td>${taskInfo.config?default("")}</td>
+
+
+                <td>
+                    <#if taskInfo.concurrency?default("")==true>
+                        允许
+                        <#else>
+                            禁止
+                    </#if>
+                </td>
+                <td>${taskInfo.allowHosts?default("")}</td>
+
+                <td>${taskInfo.denyHosts?default("")}</td>
+
+                <td>
+                    <button type="button" class="btn btn-info" onclick="toEdit('${taskInfo.flagName}')">编辑</button>
+
+                    <button type="button" class="btn btn-success" onclick='switchStatus("${taskInfo.flagName}")'>
+                        <#if taskInfo.status?default("")=='RUN'>
+                            停止
+                            <#else>
+                                运行
+                        </#if>
+                    </button>
+
+                    <#if   Session.zoomy_user.account=="admin" >
+                        <button type="button" class="btn btn-danger" onclick='deleteTaskInfo("${taskInfo.flagName}")'>删除</button>
+                    </#if>
+
+                    <button type="button" class="btn btn-info" onclick='showJobLog("${taskInfo.flagName}")'>job日志
+                    </button>
+
+                    <a class="btn btn-inverse showLog"
+                       params="{'logType':'OPERATION_LOG','logName':'ADMIN','objectType':'task_info','objectId':'${taskInfo.objectId}'}">
+                        操作日志
+                    </a>
+                </td>
+            </tr>
+        </#list>
+    </#if>
+</table>
+
+
+<#import "/base/pagination.html" as pagniation/>
+<@pagniation.page pageInfo=pageView ajax="#search_content"/>
+
+<script>
+
+    function toEdit(beanName) {
+        var url = "${rc.contextPath}/taskManager/toEdit.html?beanName=" + beanName;
+        location.href = url;
+    }
+
+
+    function search() {
+        var url = "${rc.contextPath}/taskManager/search?";
+        var params = $("#search_form").serialize();
+        $.get(url, params + "&page=" + $('.actived').html(), function (data) {
+            $("#search_content").html(data);
+        });
+    }
+
+    function deleteTaskInfo(beanName) {
+        //确认删除
+        if (confirm("确定删除吗？") == false) {
+            return;
+        }
+        //保存
+        var url = "${rc.contextPath}/taskManager/delete";
+        $.ajax({
+            type: "post",
+            url: url,
+            data: {beanName: beanName},
+            async: false,
+            error: function (data) {
+                if (data.message != undefined)
+                    console.log(data.message);
+            }
+
+        }).done(function (data) {
+            if (data.code == 0) {
+                alert("删除成功");
+                window.location = "${rc.contextPath}/taskManager/index.html";
+            } else {
+                alert(data.message);
+            }
+        });
+
+    }
+
+    //执行日志
+    function showJobLog(flagName) {
+        open_window("show_job_log", "定时任务 " + flagName + " 的执行日志", "${rc.contextPath}/taskManager/taskLog?flagName=" + flagName, {"width": "80%"});
+    }
+
+
+    function switchStatus(beanName) {
+        //保存
+        var url = "${rc.contextPath}/taskManager/switchStatus";
+        $.ajax({
+            type: "post",
+            url: url,
+            data: {beanName: beanName},
+            async: false,
+            error: function (data) {
+                if (data.message != undefined)
+                    console.log(data.message);
+            }
+
+        }).done(function (data) {
+            if (data.code == 0) {
+                alert("切换成功");
+                window.location = "${rc.contextPath}/taskManager/index.html";
+            } else {
+                alert(data.message);
+            }
+        });
+
+
+    }
+
+
+</script>

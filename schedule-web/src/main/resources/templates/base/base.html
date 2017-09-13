@@ -1,0 +1,66 @@
+<#---
+        定义模板的基础框架页面，只针对内容页面使用
+ -->
+<#macro css>
+    <#assign headContent>
+        <#nested/>
+    </#assign>
+</#macro>
+<#macro script>
+    <#assign jsContent>
+        <#nested/>
+    </#assign>
+</#macro>
+
+<#--基础模板，index对应的页面使用--->
+<#macro html title>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+
+        <link rel="stylesheet" href="${rc.contextPath}/css/bootstrap.min.css">
+        <link rel="stylesheet" href="${rc.contextPath}/css/style.css">
+        <link rel="stylesheet" href="${rc.contextPath}/js/ui/easyui.css">
+        <link rel="stylesheet" href="${rc.contextPath}/js/ui/icon.css">
+
+        <script src="${rc.contextPath}/js/jquery.min.js"></script>
+        <script src="${rc.contextPath}/js/bootstrap.min.js"></script>
+        <!-- js _beg-->
+        <script type="text/javascript" src="${rc.contextPath}/js/jquery.validationEngine.js"></script>
+        <script type="text/javascript" src="${rc.contextPath}/js/jquery.validationEngine-zh_CN.js"></script>
+
+        <script type="text/javascript" src="${rc.contextPath}/js/ui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="${rc.contextPath}/js/ui/dialog.js"></script>
+        <!-- js _end-->
+        <title>配置中心-后台管理系统-${title}</title>
+        <script type="text/javascript">
+            var rc_contextPath="${rc.contextPath}";
+        </script>
+        <script type="text/javascript">
+           $(document).ajaxError(function(event, jqxhr, settings, thrownError) {
+                alert(jqxhr.responseText.message);
+              console.log(event);
+               console.log(jqxhr);
+               console.log( settings);
+               console.log(thrownError);
+                return false;
+            });
+        </script>
+        ${headContent!""}
+    </head>
+    <body>
+    <#nested/>
+    ${jsContent!""}
+    </body>
+</html>
+</#macro>
+
+<#macro dialog>
+        ${headContent!""}
+    <#nested/>
+    ${jsContent!""}
+</#macro>

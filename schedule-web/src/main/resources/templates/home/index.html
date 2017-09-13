@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html class="index-html">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+
+    <link rel="stylesheet" href="${rc.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${rc.contextPath}/css/style.css">
+
+    <script src="${rc.contextPath}/js/jquery.min.js"></script>
+    <script src="${rc.contextPath}/js/bootstrap.min.js"></script>
+
+    <title>后台管理系统-${title}</title>
+    ${headContent!""}
+</head>
+<body class="index-body">
+    <#include "/base/header.html">
+    <#include "/base/nav.html">
+
+    <!--右侧main-->
+    <div class="rightMain" id="rightMain">
+        <div class="rightTabBoxW">
+            <ul class="clearfix rightTabBox"></ul>
+        </div>
+        <!--iframe box-->
+        <div id="iframeContainer"><h2 class="slogan">欢迎使用</h2></div>
+        <!--/iframe box结束-->
+    </div>
+    <!--/右侧main结束-->
+    <script src="${rc.contextPath}/js/common.js?t=3"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!--树状结构-->
+<div class="leftbar" id="leftbarDragWrapper">
+    <div id="leftbarDrag_r"></div>
+    <div id="leftbarDragCorner"></div>
+
+    <ul class="leftbar-group">
+
+
+        <li>
+            <a href="javascript:void(0);" class="nodeOne">中间件管理<i class="glyphicon glyphicon-chevron-down"></i></a>
+            <ul>
+                <li><a href="#" rel="${rc.contextPath}/monitor/rules/index.html" class="nodeThree">监听规则</a></li>
+            </ul>
+
+            <ul>
+                <li><a href="#" rel="${rc.contextPath}/redis/index.html" class="nodeThree">redis 数据</a></li>
+            </ul>
+
+        </li>
+
+
+        <li>
+            <a href="javascript:void(0);" class="nodeOne">系统管理<i class="glyphicon glyphicon-chevron-down"></i></a>
+            <ul>
+                <li><a href="#" rel="${rc.contextPath}/taskManager/index.html" class="nodeThree">定时任务</a></li>
+            </ul>
+
+            <ul>
+                <li><a href="#" rel="${rc.contextPath}/comLog/index.html" class="nodeThree">ComLog</a></li>
+            </ul>
+
+            <#if Session.zoomy_user ??>
+                <#if  Session.zoomy_user.account=="admin" >
+                    <ul>
+                        <li><a href="#" rel="${rc.contextPath}/perm/user/index.html" class="nodeThree">用户管理</a></li>
+                    </ul>
+                </#if>
+            </#if>
+
+            <#if Session.zoomy_user ??>
+                <#if  Session.zoomy_user.account=="admin" >
+                    <ul>
+                        <li><a href="#" rel="${rc.contextPath}/perm/role/index.html" class="nodeThree">角色管理</a></li>
+                    </ul>
+                </#if>
+            </#if>
+
+
+            <#if Session.zoomy_user ??>
+                <#if  Session.zoomy_user.account=="admin" >
+                    <ul>
+                        <li><a href="#" rel="${rc.contextPath}/perm/permission/index.html" class="nodeThree">权限管理</a></li>
+                    </ul>
+                </#if>
+            </#if>
+
+        </li>
+
+        <li>
+            <a href="javascript:void(0);" class="nodeOne">接口管理<i class="glyphicon glyphicon-chevron-down"></i></a>
+
+            <ul>
+                <li><a href="#" rel="${rc.contextPath}/test/index.html" class="nodeThree">配置文件</a></li>
+            </ul>
+
+            <ul>
+                <li><a href="#" rel="${rc.contextPath}/api/tracking/aso/index.html" class="nodeThree">ASO</a></li>
+            </ul>
+
+            <ul>
+                <li><a href="#" rel="${rc.contextPath}/api/tracking/t_config/index.html" class="nodeThree">配置管理</a></li>
+            </ul>
+
+            <ul>
+                <li><a href="#" rel="${rc.contextPath}/api/tracking/t_config/patch/index.html" class="nodeThree">多维度规则</a></li>
+            </ul>
+
+            <ul>
+                <li><a href="#" rel="${rc.contextPath}/api/tracking/version/index.html" class="nodeThree">新老版本配置</a></li>
+            </ul>
+
+            <ul>
+                <li><a href="#" rel="${rc.contextPath}/api/tracking/tDevice/index.html" class="nodeThree">测试设备</a></li>
+            </ul>
+
+        </li>
+
+
+    </ul>
+
+</div>
+<!--/树状结构结束-->

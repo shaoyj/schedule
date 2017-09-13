@@ -1,0 +1,31 @@
+<#import "/base/base.html" as base/>
+<@base.html "日志">
+<div>${jobName?html}任务执行情况</div>
+
+<table class="table table-bordered table-hover">
+    <tr class="success">
+        <th>host</th>
+        <th>startTime</th>
+        <th>nextTime</th>
+
+        <th>fetchCount</th>
+        <th>fetchDataCount</th>
+        <th>successCount</th>
+
+    </tr>
+    <#list pageView.result as log>
+        <tr>
+            <td>${log.host?default("")}</td>
+            <td>${log.startTime?string("yyyy-MM-dd HH:mm:ss")}</td>
+            <td>${log.nextTime?string("yyyy-MM-dd HH:mm:ss")}</td>
+
+            <td>${log.fetchCount?default("")}</td>
+            <td>${log.fetchDataCount?default("")}</td>
+            <td>${log.successCount?default("")}</td>
+
+        </tr>
+    </#list>
+</table>
+<#import "/base/pagination.html" as pagniation/>
+<@pagniation.page pageInfo=pageView ajax="#show_job_log"/>
+</@base.html>

@@ -1,0 +1,84 @@
+<#macro page pageInfo="" paramPage="page" ajax="">
+<#if pageInfo!0 gt 0>
+	<div class="row" style="margin:10px 0px;">
+		<form action="${pageInfo.url}" page onsubmit="return false">
+			<div class="col-md-3 col-sm-12">
+				<div style="padding:5px 0px;">第${pageInfo.currentPage}页/共${pageInfo.totalSize}条</div>
+			</div>
+			<div class="col-md-9 col-sm-12">
+				<div class="text-right">
+				<#if pageInfo.totalPages lt 11>
+					<#assign begin=1/>
+					<#assign end=pageInfo.totalPages/>
+					<#if end lt 1><#assign end=1/></#if>
+					<#elseif pageInfo.totalPages-pageInfo.currentPage lt 5>
+						<#assign end = pageInfo.totalPages/>
+						<#assign begin = pageInfo.totalPages-9/>
+						<#elseif pageInfo.currentPage lt 5>
+							<#assign begin = 1/>
+							<#assign end = 10/>
+							<#else>
+								<#assign begin=pageInfo.currentPage-4/>
+								<#assign end = pageInfo.currentPage+5/>
+				</#if>
+				<ul class="pagination" style="visibility: visible;margin:0px;float:right;">
+					<#if pageInfo.currentPage gt 1>
+					<li class="prev"><a href="javascript:void(0)" title="Prev" page="${pageInfo.currentPage-1}">&laquo;</a></li>
+					</#if>
+
+					<#list begin..end as pp>
+					<li <#if pp==pageInfo.currentPage>class ='active'</#if>><a href="javascript:void(0);" <#if pp==pageInfo.currentPage>class ='actived'<#else> page="${pp}"</#if>>${pp}</a></li>
+					</#list>
+
+					<#if pageInfo.totalPages gt pageInfo.currentPage>
+					<li class="next"><a href="javascript:void(0)" title="Next" page="${pageInfo.currentPage+1}">&#187;</a></li>
+					</#if>
+				</ul>
+				<div class="input-group" style="width: 120px;float:right; margin-right: 10px;">
+					<div class="input-group-addon" style="padding:6px 8px">跳至</div>
+					<input type="text" class="form-control pageInput"/>
+					<a href="javascript:void(0)" class="input-group-addon btn btn-default pageBtn" page>&#187;</a>
+				</div>
+				</div>
+			</div>
+		</form>
+   	</div>
+	<script type="text/javascript">
+		$(function(){
+			$("form[page] a[page]").each(function(){
+				if($(this).data("bind")==undefined){
+					$(this).click(function(){
+						if($(this).hasClass("pageBtn")){
+							var $form = $(this).parents("form[page]");
+							var page = $form.find("input.pageInput").val();
+							if(page==""){
+								page=1;
+							}
+							$(this).attr("page",page);
+							toPage($(this));
+						}else{
+							toPage($(this));
+						}
+
+					});
+					$(this).data("bind",true)
+				}
+
+			})
+
+			function toPage($this){
+				var $form = $this.parents("form");
+
+				var page = $this.attr("page");
+				var url = $form.attr("action");
+				url+=page;
+				<#if ajax!0 gt 0>
+				$("${ajax}").load(url);
+				<#else>
+				window.location.href=url;
+				</#if>
+			}
+		})
+	</script>
+</#if>
+</#macro>

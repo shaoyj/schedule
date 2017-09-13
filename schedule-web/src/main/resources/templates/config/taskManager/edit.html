@@ -1,0 +1,143 @@
+<#import "/base/base.html" as base/>
+<@base.css>
+<!-- 引入css _beg -->
+<link rel="stylesheet" type="text/css" href="${rc.contextPath}/css/validationEngine.jquery.css"/>
+<!-- 引入css _end-->
+</@base.css>
+<@base.script>
+
+</@base.script>
+<@base.html "编辑定时任务">
+<br id="content">
+</br>
+<div>
+    <form  id="formUpdate"   >
+
+        <input type="hidden" id="pageHid" name="page" value="${page}"/>
+        <input type="hidden" id="flagName" name="flagName"  value="${taskInfo.flagName}" />
+        <input type="hidden" id="objectId" name="objectId"  value="${taskInfo.objectId}" />
+        <p>
+            <label>JOB名称：</label>
+                <span class="form-group">
+                    <input type="text"   name="beanName" size="40" class="form-control " maxlength="50" value="${taskInfo.beanName}"/>
+                </span>
+        </p>
+
+        <p>
+            <label>运行状态：</label>
+            <span class="radio">
+                 <input type="hidden" name="status"  value="${taskInfo.status}"/>
+                <#if taskInfo.status?default("")=='RUN'>
+                    <b>运行</b>
+                    <#else>
+                        <b>停止</b>
+                </#if>
+            </span>
+        </p>
+
+        <p>
+            <label>表达式：</label>
+                <span class="form-group">
+                    <input type="text" name="cronExpression" size="40" class="form-control " maxlength="50" value="${taskInfo.cronExpression}"/>
+                </span>
+        </p>
+
+        <p>
+            <label>最大处理数：</label>
+                <span class="form-group">
+                    <input type="text" name="maxLimit" size="40" class="form-control " maxlength="50" value="${taskInfo.maxLimit}"/>
+                </span>
+        </p>
+
+        <p>
+            <label>配置内容：</label>
+                <span class="form-group">
+                    <input type="text" name="config" size="40" class="form-control" maxlength="50" value="${taskInfo.config}"/>
+                </span>
+        </p>
+
+        <p>
+            <label>线程数：</label>
+                <span class="form-group">
+                    <input type="text" name="threads" size="40" class="form-control " maxlength="50" value="${taskInfo.threads}"/>
+                </span>
+        </p>
+
+        <p>
+            <label>是否允许并行：</label>
+             <span class="radio">
+                <label  class="radio">
+                    <input type="radio" name="concurrency" value="true"  <#if taskInfo.concurrency?default("")==true>checked="checked"</#if> />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;允许
+                </label>
+                <label  class="radio">
+                    <input type="radio" name="concurrency" value="false" <#if taskInfo.concurrency?default("false")==false >checked="checked"</#if>  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;禁止
+                </label>
+            </span>
+        </p>
+
+        <p>
+            <label>只允许执行主机：</label>
+                <span class="form-group">
+                    <input type="text" name="allowHosts" size="40" class="form-control" maxlength="50" value="${taskInfo.allowHosts}"/>
+                </span>
+        </p>
+
+        <p>
+            <label>只禁止执行主机：</label>
+                <span class="form-group">
+                    <input type="text" name="denyHosts" size="40" class="form-control" maxlength="50" value="${taskInfo.denyHosts}"/>
+                </span>
+        </p>
+
+       <p>
+                <label>备注：</label>
+                    <span class="form-group">
+                        <input type="text" name="memo" size="40" class="form-control " maxlength="50" value="${taskInfo.memo}"/>
+                    </span>
+            </p>
+
+
+        <div class="btnBox">
+            <input class="btn btn-primary" type="button" value="更新" onclick="updateData()">
+        </div>
+    </form>
+</div>
+
+
+
+<script type="text/javascript">
+    function updateData()
+    {
+        //校验
+        var flag=jQuery("#formUpdate").validationEngine('validate');
+        if(flag==false)
+        {
+            return;
+        }
+
+        //保存
+        var url = "${rc.contextPath}/taskManager/edit";
+        var param = $("#formUpdate").serialize();
+        $.ajax({
+            type: "post",
+            url: url,
+            data: param,
+            async: false,
+            error: function (data) {
+                if (data.message != undefined)
+                    console.log(data.message);
+            }
+
+        }).done(function (data) {
+            if (data.code == 0) {
+                alert("更新成功");
+                window.location = "${rc.contextPath}/taskManager/index.html";
+            } else {
+                alert(data.message);
+            }
+        });
+
+    }
+
+</script>
+</@base.html>

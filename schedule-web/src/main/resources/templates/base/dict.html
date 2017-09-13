@@ -1,0 +1,69 @@
+<#macro showOptions dictKey selectValue="" haveBlank="N" defaultValue="" excludeValue="">
+    <@showDictContent dictType="EMNU" dictKey=dictKey/>
+    <#if defaultValue !="">
+        <option value="">${defaultValue}</option>
+    </#if>
+    <#if haveBlank=="Y"><option value="">请选择</option></#if>
+    <#list dictList as dict>
+        <#if excludeValue !="">
+            <#if excludeValue != dict.value>
+                <option value="${dict.value}" <#if dict.value==selectValue>selected</#if>>${dict.label}</option>
+            </#if>
+         <#else>
+             <option value="${dict.value}" <#if dict.value==selectValue>selected</#if>>${dict.label}</option>
+        </#if>
+    </#list>
+</#macro>
+
+<#macro showLabel dictKey selectValue="">
+    <@showDictContent dictType="EMNU" dictKey=dictKey selectValue=selectValue/>
+    <#list dictList as dict>
+    	<#if dict.value==selectValue>${dict.label}</#if>
+    </#list>
+</#macro>
+
+<#macro showDictOptions dictKey selectValue="" haveBlank="N">
+    <@showDictContent dictType="DICT" dictKey=dictKey/>
+    <#if haveBlank=="Y"><option value="">请选择</option></#if>
+    <#list dictList as dict>
+        <option value="${dict.value}" <#if dict.value==selectValue>selected</#if>>${dict.label}</option>
+    </#list>
+</#macro>
+
+<#macro showDictLabel dictKey selectValue="">
+    <@showDictContent dictType="DICT" dictKey=dictKey selectValue=selectValue/>
+    <#list dictList as dict>
+    	<#if dict.value==selectValue>${dict.label}</#if>
+    </#list>
+</#macro>
+
+<#macro showRadio dictKey selectValue="" haveBlank="N" name="">
+    <@showDictContent dictType="EMNU" dictKey=dictKey/>
+    <#if haveBlank=="Y"><option value="">全部</option></#if>
+    <#list dictList as dict>
+        <label class="radio custom-radio" >
+            ${dict.label}<input type="radio" name="${name}"  <#if dict.value==selectValue>checked</#if> value="${dict.value}">
+        </label>
+    </#list>
+</#macro>
+
+<#macro showDictCheckbox dictKey selectValue="" objectName="" required="">
+    <@showDictContent dictType="DICT" dictKey=dictKey/>
+    <#list dictList as dict>
+     		<label class="checkbox-inline" >
+             		 	<input type="checkbox" name="${objectName}" value="${dict.value}"
+             		 	<#list selectValue as value>
+             		 		<#if value==dict.value>checked</#if>
+             		 	</#list>
+             		 	<#if required='required'>class="{required:true}"</#if>>${dict.label}
+            </label>
+    </#list>
+</#macro>
+
+<#macro showDictOptionsExtend dictKey selectValue="" haveBlank="N">
+    <@showDictContent dictType="DICT" dictKey=dictKey/>
+    <#if haveBlank=="Y"><option value="">请选择</option></#if>
+    <#list dictList as dict>
+        <option value="${dict.label}" <#if dict.label==selectValue>selected</#if>>${dict.label}</option>
+    </#list>
+</#macro>

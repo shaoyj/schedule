@@ -1,5 +1,8 @@
 package com.syj.schedule.config;
 
+import com.syj.schedule.common.interceptor.RequestInterceptor;
+import com.syj.schedule.common.zk.ZookeeperClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +29,9 @@ public class WebAppConfigurer extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
+        //传递req，res
+        registry.addInterceptor(new RequestInterceptor()).addPathPatterns("/**");
+
         super.addInterceptors(registry);
     }
 
@@ -37,5 +43,16 @@ public class WebAppConfigurer extends WebMvcConfigurerAdapter {
         factory.setMaxRequestSize("20MB");
         return factory.createMultipartConfig();
     }
+
+
+    @Bean(
+            initMethod = "init",
+            destroyMethod = "close"
+    )
+    public ZookeeperClient zookeeperClient(@Value("${dubbo.register.address}") String conntionStr) {
+        ZookeeperClient zookeeperClient = new ZookeeperClient(conntionStr);
+        return zookeeperClient;
+    }
+
 
 }

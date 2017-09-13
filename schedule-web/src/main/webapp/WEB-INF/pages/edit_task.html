@@ -1,0 +1,39 @@
+<#import "base.html" as base>
+<#import "spring.html" as spring>
+<@base.html "">
+    <h3>添加新的job</h3>
+    <form action="${rc.contextPath}/task/save.do" method="post">
+    <table>
+        <tr>
+            <td>job名称</td><td><@spring.formInput "taskInfo.beanName"/></td><td>job的名称</td>
+        </tr>
+        <tr>
+            <td>表达式</td><td><@spring.formInput "taskInfo.cronExpression"/></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>最大处理数</td><td><@spring.formInput "taskInfo.maxLimit"/></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>线程数</td><td><@spring.formInput "taskInfo.threads"/></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>配置内容</td><td><@spring.formInput "taskInfo.config"/></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>只允许执行主机</td><td><@spring.formInput "taskInfo.allowHosts"/></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>只禁止执行主机</td><td><@spring.formInput "taskInfo.denyHosts"/></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>备注</td><td><@spring.formTextarea "taskInfo.memo" "style='width:200px'"/></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>是否允许并行</td><td><input type="radio" name="concurrency" value="true" <#if taskInfo.concurrency>checked</#if>/>是
+            <input type="radio" name="concurrency" value="false" <#if taskInfo.concurrency==false>checked</#if>/>否
+            </td>
+        </tr>
+    </table>
+    <div><input type="submit" value="保存"/></div>
+    </form>
+</@base.html>

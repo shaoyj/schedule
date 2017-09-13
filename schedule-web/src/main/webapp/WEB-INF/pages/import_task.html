@@ -1,0 +1,13 @@
+<#import "base.html" as base>
+    <@base.html "导入">
+    <h3>导入job-info信息</h3>
+
+    <form action="${rc.contextPath}/task/import.do" method="post">
+    <textarea name="content" rows="10" cols="100"></textarea>
+        <br/><input type="submit" value="保存"/>
+    </form>
+    <br/>
+    <div>
+        <#if successCount??>成功导入数量:${successCount}</#if>
+    </div>
+</@base.html>

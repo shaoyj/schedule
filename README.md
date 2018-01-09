@@ -10,15 +10,15 @@
 EXAMPLE:<br/>
 pom.xml<br/>
         &lt;dependency&gt;<br/>
-            &lt;groupId&gt;com.yili.schedule&lt;/groupId&gt;<br/>
+            &lt;groupId&gt;com.syj.schedule&lt;/groupId&gt;<br/>
             &lt;artifactId&gt;schedule-core&lt;/artifactId&gt;<br/>
             &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;<br/>
         &lt;/dependency&gt;<br/>
 
 spring.xml<br/>
 
-@Configuration
-@ComponentScan("com.yili.XXXX")
+@Configuration<br/>
+@ComponentScan("com.syj.schedule")<br/>
 public class SpringBeans {<br/>
 <br/>
     private String zookeeperlist="localhost:2181";<br/>

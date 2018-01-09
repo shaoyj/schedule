@@ -9,10 +9,10 @@
 
 EXAMPLE:<br/>
 pom.xml<br/>
-        &lt;dependency&gt;<br/>
-            &lt;groupId&gt;com.syj.schedule&lt;/groupId&gt;<br/>
-            &lt;artifactId&gt;schedule-core&lt;/artifactId&gt;<br/>
-            &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;<br/>
+ &lt;dependency&gt;<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;com.syj.schedule&lt;/groupId&gt;<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;artifactId&gt;schedule-core&lt;/artifactId&gt;<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;<br/>
         &lt;/dependency&gt;<br/>
 
 spring.xml<br/>
@@ -29,15 +29,15 @@ public class SpringBeans {<br/>
     @Bean<br/>
     public ZookeeperProfile createProfile(){<br/>
         ZookeeperProfile profile = new ZookeeperProfile(zookeeperlist,"/schedule");<br/>
-        return profile;<br/>
+ &nbsp;&nbsp; &nbsp;&nbsp;return profile;<br/>
     }<br/>
 <br/>
     @Bean<br/>
     public ScheduleSpringFactroy createFactory(){<br/>
-        ScheduleSpringFactroy factroy = new ScheduleSpringFactroy();<br/>
-        factroy.setZookeeperProfile(profile);<br/>
-        return factroy;<br/>
-    }<br/>
+ &nbsp;&nbsp; &nbsp;&nbsp;ScheduleSpringFactroy factroy = new ScheduleSpringFactroy();<br/>
+ &nbsp;&nbsp; &nbsp;&nbsp;factroy.setZookeeperProfile(profile);<br/>
+ &nbsp;&nbsp; &nbsp;&nbsp;return factroy;<br/>
+ &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
 
